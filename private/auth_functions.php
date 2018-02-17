@@ -24,6 +24,7 @@ function log_in_user($user) {
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['last_login'] = time();
     $_SESSION['username'] = $user['username'];
+    set_cookie_at_login($user['id']);
     return true;
 }
 
@@ -32,6 +33,8 @@ function log_out_user() {
     unset($_SESSION['last_login']);
     unset($_SESSION['username']);
     // session_destroy(); // optional: destroys the whole session
+    unset_cookie_at_logout();
+
     return true;
 }
 
@@ -44,6 +47,13 @@ function is_logged_in() {
     // Having a admin_id in the session serves a dual-purpose:
     // - Its presence indicates the admin is logged in.
     // - Its value tells which admin for looking up their record.
+
+    // Check to see if a valid cookie exists - if yes, log the user in
+    if(isset($_COOKIE['user_id'])) {
+        $user = find_user_by_id($_COOKIE['user_id']);
+        log_in_user($user);
+    }
+
     return isset($_SESSION['user_id']);
 }
 
@@ -55,4 +65,30 @@ function require_login() {
     } else {
         // Do nothing, let the rest of the page proceed
     }
+}
+
+function set_cookie_at_login($user_id) {
+    $expires = time() + 60*60*24*365; // set expiry to 1 year
+    setcookie(
+      'user_id',
+      $user_id,
+      $expires,
+      '/',
+      'bfn100.tinybot.ca',
+      false,
+      true
+    );
+}
+
+function unset_cookie_at_logout() {
+    $expires = time() + 60*60*24*365; // set expiry to 1 year
+    setcookie(
+        'user_id',
+        null,
+        time() - 3600,
+        '/',
+        'bfn100.tinybot.ca',
+        false,
+        true
+    );
 }
