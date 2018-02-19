@@ -17,7 +17,7 @@
     <!-- JavaScript -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script
-            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <!-- Page Title -->
