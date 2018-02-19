@@ -93,6 +93,19 @@
     <!-- Latest Activity -->
     <h3 class="mt-3">Recent Activity</h3>
     <a class="btn btn-primary btn-sm mb-3" href="<?php echo url_for('/pushups/new.php'); ?>">Submit</a>
+    <table class="table table-hover table-responsive-sm">
+        <tbody>
+        <?php while($pushup = mysqli_fetch_assoc($pushups_set)) { ?>
+            <tr>
+                <td>
+                    <strong><?php echo date('D, M j',strtotime(h($pushup['date']))); ?></strong> <u><?php echo h($pushup['username']); ?></u> completed <?php echo h($pushup['amount']); ?> push-ups. <?php if($pushup['comment']) { echo '<i>"' . h($pushup['comment']) . '"</i>'; } ?>
+                </td>
+            </tr>
+        <?php } // while ?>
+        </tbody>
+    </table>
+
+    <!-- OLD TABLE
     <table class="table table-hover table-sm table-responsive-sm">
         <thead class="thead-light">
             <tr>
@@ -104,17 +117,17 @@
         </thead>
 
         <tbody>
-        <?php while($pushup = mysqli_fetch_assoc($pushups_set)) { ?>
+        <?php $pushups_set = find_all_pushups(); while($pushup = mysqli_fetch_assoc($pushups_set)) { ?>
             <tr>
                 <td><?php echo date('D, M j, Y',strtotime(h($pushup['date']))); ?></td>
                 <td><?php echo h($pushup['username']); ?></td>
                 <td><?php echo h($pushup['amount']); ?></td>
                 <td><?php echo h($pushup['comment']); ?></td>
             </tr>
-        <?php } ?>
+        <?php } // while ?>
         </tbody>
     </table>
-
+    -->
     <!-- Google Charts -->
     <h3 class="mt-3">Charts</h3>
 
