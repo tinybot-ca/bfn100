@@ -1,27 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" media="all" href="<?php echo url_for('/stylesheets/public.css'); ?>" />
-    <!-- Bookmark Icons -->
-    <link href="/images/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link href="/images/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
-    <link href="/images/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
-    <link href="/images/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
-    <link href="/images/icon-hires.png" rel="icon" sizes="256x256" />
-    <link href="/images/icon-normal.png" rel="icon" sizes="128x128" />
-    <!-- JavaScript -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <!-- Page Title -->
-    <title>BFN100<?php if (isset($page_title)) { echo ' - ' . h($page_title); } ?><?php if(isset($preview) && $preview) { echo ' [PREVIEW]'; } ?></title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" media="all" href="<?php echo url_for('/stylesheets/public.css'); ?>" />
+  <!-- Bookmark Icons -->
+  <link href="/images/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="/images/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+  <link href="/images/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+  <link href="/images/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+  <link href="/images/icon-hires.png" rel="icon" sizes="256x256" />
+  <link href="/images/icon-normal.png" rel="icon" sizes="128x128" />
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <!-- Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <!-- Page Title -->
+  <title>BFN100<?php if (isset($page_title)) { echo ' - ' . h($page_title); } ?><?php if(isset($preview) && $preview) { echo ' [PREVIEW]'; } ?></title>
 </head>
 
 <body>

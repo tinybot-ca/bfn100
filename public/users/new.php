@@ -40,46 +40,48 @@
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>New User</h3>
 
-    <h3 class="mt-3">New User</h3>
+      <div class="actions mb-3">
+          <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/index.php'); ?>">Back to List</a>
+      </div>
 
-    <div class="actions mb-3">
-        <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/index.php'); ?>">Back to List</a>
-    </div>
+      <?php echo display_errors($errors); ?>
 
-    <?php echo display_errors($errors); ?>
-
-    <form class="form" action="<?php echo url_for('/users/new.php'); ?>" method="post">
-        <dl>
-            <dt>First Name</dt>
-            <dd><input type="text" name="first_name" value="<?php echo h($user['first_name']); ?>" /></dd>
-        </dl>
-        <dl>
-            <dt>Last Name</dt>
-            <dd><input type="text" name="last_name" value="<?php echo h($user['last_name']); ?>" /></dd>
-        </dl>
-        <dl>
-            <dt>Email</dt>
-            <dd><input type="text" name="email" value="<?php echo h($user['email']); ?>" /></dd>
-        </dl>
-        <dl>
-            <dt>Username</dt>
-            <dd><input type="text" name="username" value="<?php echo h($user['username']); ?>" /></dd>
-        </dl>
-        <dl>
-            <dt>Password</dt>
-            <dd><input type="password" name="password" value="" /></dd>
-        </dl>
-        <dl>
-            <dt>Confirm Password</dt>
-            <dd><input type="password" name="confirm_password" value="" /></dd>
-        </dl>
+      <form class="form" action="<?php echo url_for('/users/new.php'); ?>" method="post">
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input type="text" class="form-control" name="first_name" value="<?php echo h($user['first_name']); ?>" />
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input type="text" class="form-control" name="last_name" value="<?php echo h($user['last_name']); ?>" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" name="email" value="<?php echo h($user['email']); ?>" />
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" value="<?php echo h($user['username']); ?>" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" value="" />
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" class="form-control" name="confirm_password" value="" />
+        </div>
         <p>Passwords should be at least 8 characters and include at least one uppercase letter, lowercase letter, number, and symbol.</p>
         <div id="operations">
             <input class="btn btn-success" type="submit" value="Create User" />
         </div>
-    </form>
-
+      </form>
+    </div><!-- col-md-12 -->
+  </div><!-- row -->
 </div><!-- container -->
 
 <?php include(SHARED_PATH . '/public_footer.php'); ?>

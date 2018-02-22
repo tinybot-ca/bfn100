@@ -841,25 +841,37 @@ function find_user_by_username($username) {
 
 // charts
 
-function chart_total_by_year($year) {
+function chart_total_by_year() {
     global $db;
 
-    $sql = "SELECT users.username, SUM(amount) AS total FROM pushups ";
+    $sql = "SELECT YEAR(DATE) AS year, users.username, SUM(amount) AS total FROM pushups ";
     $sql .= "INNER JOIN users ON pushups.user_id = users.id ";
-    $sql .= "WHERE YEAR(date) = '" . db_escape($db, $year) . "' ";
-    $sql .= "GROUP BY users.username";
+    $sql .= "GROUP BY year, users.username ";
+    $sql .= "ORDER BY year DESC, users.username ASC";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     return $result;
 }
 
+function chart_total_overall() {
+  global $db;
+
+  $sql = "SELECT users.username, SUM(amount) AS total FROM pushups ";
+  $sql .= "INNER JOIN users ON pushups.user_id = users.id ";
+  $sql .= "GROUP BY users.username ";
+  $sql .= "ORDER BY users.username ASC";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+
 function chart_total_by_month() {
     global $db;
 
-    $sql = "SELECT CONCAT(YEAR(date),'-',MONTH(date)) AS month, SUM(IF(user_id = 1, amount, NULL)) as 'bernie', SUM(IF(user_id = 2, amount, NULL)) as 'moti' FROM pushups ";
+    $sql = "SELECT CONCAT(YEAR(date),'-',MONTH(date)) AS myDate, MONTH(date) AS month, users.username, SUM(amount) AS total FROM pushups ";
     $sql .= "INNER JOIN users ON pushups.user_id = users.id ";
-    $sql .= "GROUP BY month ";
-    $sql .= "ORDER BY date DESC";
+    $sql .= "GROUP BY myDate, users.username ";
+    $sql .= "ORDER BY date ASC";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     return $result;
