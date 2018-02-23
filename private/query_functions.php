@@ -580,6 +580,18 @@ function find_all_pushups() {
     return $result;
 }
 
+function find_all_pushups_by_user_id($id) {
+  global $db;
+
+  $sql = "SELECT pushups.date, users.username, pushups.amount, pushups.comment FROM pushups ";
+  $sql .= "INNER JOIN users ON pushups.user_id = users.id ";
+  $sql .= "WHERE user_id='" . db_escape($db, $id) . "' ";
+  $sql .= "ORDER BY date DESC";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  return $result;
+}
+
 function insert_pushup($pushup) {
     global $db;
 

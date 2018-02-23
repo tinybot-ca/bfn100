@@ -5,6 +5,7 @@
     $page_title = 'User Detail';
     $id = $_GET['id'] ?? '1';
     $user = find_user_by_id($id);
+    $pushups = find_all_pushups_by_user_id($id);
 ?>
 
 <?php include(SHARED_PATH . '/public_header.php'); ?>
@@ -40,6 +41,25 @@
       </div>
 
       <!-- Historical Push-up Activity -->
+      <h3>Activity History</h3>
+      <table class="table table-hover table-sm table-responsive-sm">
+        <thead class="thead-light">
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php while($pushup = mysqli_fetch_assoc($pushups)) { ?>
+          <tr>
+            <td><?php echo date('Y-m-d', strtotime(h($pushup['date']))); ?></td>
+            <td><?php echo h($pushup['amount']); ?></td>
+            <td><?php echo h($pushup['comment']); ?></td>
+          </tr>
+        <?php } // while $pushup ?>
+        </tbody>
+      </table>
 
     </div><!-- col-md-12 -->
   </div><!-- row -->

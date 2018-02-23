@@ -43,7 +43,7 @@
     <h3 class="mt-3">Edit User</h3>
 
     <div class="actions mb-3">
-        <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/index.php'); ?>">Back to List</a>
+        <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/show.php?id=' . h(u($id))); ?>">Back to User</a>
     </div>
 
     <?php echo display_errors($errors); ?>
