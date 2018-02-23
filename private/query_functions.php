@@ -571,7 +571,7 @@ function has_unique_admin_name($admin_proposed) {
 function find_all_pushups() {
     global $db;
 
-    $sql = "SELECT pushups.date, users.username, pushups.amount, pushups.comment FROM pushups ";
+    $sql = "SELECT pushups.date, users.username, pushups.amount, pushups.comment, pushups.user_id FROM pushups ";
     $sql .= "INNER JOIN users ON pushups.user_id = users.id ";
     $sql .= "ORDER BY date DESC ";
     $sql .= "LIMIT 6";

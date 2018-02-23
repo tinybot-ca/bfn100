@@ -16,7 +16,7 @@
         <?php while($pushup = mysqli_fetch_assoc($pushups_set)) { ?>
           <tr class="">
             <td class="pl-0 pr-0">
-              <strong><?php echo date('D, M j',strtotime(h($pushup['date']))); ?></strong>    <u><?php echo h($pushup['username']); ?></u> completed <?php echo h($pushup['amount']); ?> push-ups. <?php if($pushup['comment']) { echo '<i>"' . h($pushup['comment']) . '"</i>'; } ?>
+              <strong><?php echo date('D, M j',strtotime(h($pushup['date']))); ?></strong> <a href="<?php echo url_for('/users/show.php?id=' . h($pushup['user_id'])) ?>"><u><?php echo h($pushup['username']); ?></u></a> completed <?php echo h($pushup['amount']); ?> push-ups. <?php if($pushup['comment']) { echo '<i>"' . h($pushup['comment']) . '"</i>'; } ?>
             </td>
           </tr>
         <?php } // while ?>
