@@ -839,6 +839,31 @@ function find_user_by_username($username) {
     return $user; // returns an assoc. array
 }
 
+function is_admin($id) {
+  global $db;
+
+  $sql = "SELECT is_admin FROM users ";
+  $sql .= "WHERE id='" . db_escape($db, $id) . "' ";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $user = mysqli_fetch_assoc($result);
+  mysqli_free_result($result);
+  if($user['is_admin'] == true) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function is_user_profile_owner($profile_id, $session_id) {
+
+  if($profile_id == $session_id) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // charts
 
 function chart_total_by_year() {

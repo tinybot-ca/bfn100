@@ -15,8 +15,8 @@
       <h3>User Profile</h3>
       <div class="actions mb-3">
           <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/index.php'); ?>">Back to List</a>
-          <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/edit.php?id=' . h(u($user['id']))); ?>">Edit</a>
-          <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/delete.php?id=' . h(u($user['id']))); ?>">Delete</a>
+          <a class="btn btn-primary btn-sm <?php if(!is_profile_owner_or_admin($id)) { echo "d-none"; } ?>" href="<?php echo url_for('/users/edit.php?id=' . h(u($user['id']))); ?>">Edit</a>
+          <a class="btn btn-primary btn-sm <?php if(!is_admin($_SESSION['user_id'])) { echo "d-none"; } ?>" href="<?php echo url_for('/users/delete.php?id=' . h(u($user['id']))); ?>">Delete</a>
       </div>
 
       <!-- User Profile -->

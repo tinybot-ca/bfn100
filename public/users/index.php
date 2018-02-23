@@ -23,9 +23,6 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
@@ -36,9 +33,6 @@
             <td><?php echo h($user['first_name']); ?></td>
             <td><?php echo h($user['last_name']); ?></td>
             <td><?php echo h($user['email']); ?></td>
-            <td><a class="action" href="<?php echo url_for('/users/show.php?id=' . h(u($user['id']))); ?>">View</a></td>
-            <td><a class="action" href="<?php echo url_for('/users/edit.php?id=' . h(u($user['id']))); ?>">Edit</a></td>
-            <td><a class="action" href="<?php echo url_for('/users/delete.php?id=' . h(u($user['id']))); ?>">Delete</a></td>
           </tr>
         <?php } // while $user ?>
         </tbody>

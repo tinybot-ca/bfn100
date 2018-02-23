@@ -92,3 +92,13 @@ function unset_cookie_at_logout() {
         true
     );
 }
+
+function is_profile_owner_or_admin($profile_id) {
+  if (is_admin($_SESSION['user_id'])) {
+    return true;
+  } elseif($profile_id == $_SESSION['user_id']) {
+    return true;
+  } else {
+    return false;
+  }
+}
