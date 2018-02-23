@@ -13,7 +13,7 @@
     <div class="col-md-12">
       <h3>Users</h3>
       <div class="actions mb-3">
-          <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/new.php'); ?>">Create New User</a>
+          <a class="btn btn-primary btn-sm <?php if(!is_admin($_SESSION['user_id'])) { echo "d-none"; } ?>" href="<?php echo url_for('/users/new.php'); ?>">Create New User</a>
       </div>
       <table class="table table-hover table-sm table-responsive-sm">
         <thead class="thead-light">

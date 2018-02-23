@@ -5,7 +5,7 @@
 
     $page_title = 'Edit User';
 
-    if (!isset($_GET['id'])) {
+    if (!isset($_GET['id']) or !is_profile_owner_or_admin($_GET['id'])) {
         redirect_to(url_for('/users/index.php'));
     }
 
