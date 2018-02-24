@@ -5,11 +5,11 @@
 
   $page_title = 'Edit Push-Up';
 
-  if (!isset($_GET['id']) or !is_profile_owner_or_admin($pushup['user_id'])) {
+  $id = $_GET['id'];
+
+  if (!isset($_GET['id'])) {
     redirect_to(url_for('/'));
   }
-
-  $id = $_GET['id'];
 
   if (is_post_request()) {
     $pushup = [];
@@ -29,6 +29,11 @@
     $pushup = find_pushup_by_id($_GET['id']);
     $date = date('Y-m-d', strtotime($pushup['date']));
     $user = find_user_by_id($pushup['user_id']);
+    // Kick user out if they are not an admin or push-up record owner
+    if(!is_profile_owner_or_admin($pushup['user_id'])) {
+      $_SESSION['message'] = '<strong>Warning:</strong> You are not the owner of this record.';
+      redirect_to(url_for('/'));
+    }
   }
 ?>
 
@@ -43,6 +48,10 @@
       </div>
       <?php echo display_errors($errors); ?>
       <form action="<?php echo url_for('/pushups/edit.php?id=' . h(u($id))); ?>" method="post">
+        <div class="form-group">
+          <label for="pushup_id">ID</label>
+          <input type="text" class="form-control" id="pushup_id" name="pushup_id" value="<?php echo h($id); ?>" />
+        </div>
         <div class="form-group">
           <label for="date">Date</label>
           <input type="date" class="form-control" id="date" name="date" value="<?php echo h($date); ?>" />

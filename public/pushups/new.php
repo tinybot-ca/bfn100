@@ -37,6 +37,9 @@
   <div class="row">
     <div class="col-md-12">
       <h3>New Submission</h3>
+      <div class="actions mb-3">
+        <a class="btn btn-primary btn-sm" href="<?php echo url_for('/'); ?>">Cancel</a>
+      </div>
       <?php echo display_errors($errors); ?>
       <form action="<?php echo url_for('/pushups/new.php'); ?>" method="post">
         <div class="form-group">
