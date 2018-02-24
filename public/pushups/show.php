@@ -16,8 +16,8 @@
       <h3>Record Detail</h3>
       <div class="actions mb-3">
         <a class="btn btn-primary btn-sm" href="<?php echo url_for('/users/show.php?id=' . h(u($pushup['user_id']))); ?>">Back to User</a>
-        <a class="btn btn-primary btn-sm <?php if(!is_profile_owner_or_admin($pushup['user_id'])) { echo "d-none"; } ?>" href="<?php echo url_for('/pushups/edit.php?id=' . h(u($user['id']))); ?>">Edit</a>
-        <a class="btn btn-primary btn-sm <?php if(!is_profile_owner_or_admin($pushup['user_id'])) { echo "d-none"; } ?>" href="<?php echo url_for('/pushups/delete.php?id=' . h(u($user['id']))); ?>">Delete</a>
+        <a class="btn btn-primary btn-sm <?php if(!is_profile_owner_or_admin($pushup['user_id'])) { echo "d-none"; } ?>" href="<?php echo url_for('/pushups/edit.php?id=' . h(u($pushup['id']))); ?>">Edit</a>
+        <a class="btn btn-primary btn-sm <?php if(!is_profile_owner_or_admin($pushup['user_id'])) { echo "d-none"; } ?>" href="<?php echo url_for('/pushups/delete.php?id=' . h(u($pushup['id']))); ?>">Delete</a>
       </div>
 
       <!-- Push-Up Detail -->
@@ -35,7 +35,7 @@
           <dd><?php echo h($pushup['username']); ?></dd>
         </dl>
         <dl>
-          <dt>Amount</dt>
+          <dt># of push-ups</dt>
           <dd><?php echo h($pushup['amount']); ?></dd>
         </dl>
         <dl>

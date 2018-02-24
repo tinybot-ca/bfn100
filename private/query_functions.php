@@ -620,6 +620,32 @@ function insert_pushup($pushup) {
     }
 }
 
+function update_pushup($pushup) {
+  global $db;
+
+  $errors = validate_pushup($pushup);
+  if (!empty($errors)) {
+    return $errors;
+  }
+
+  $sql = "UPDATE pushups SET ";
+  $sql .= "date='" . db_escape($db, $pushup['date']) . "', ";
+  $sql .= "amount='" . db_escape($db, $pushup['amount']) . "', ";
+  $sql .= "comment='" . db_escape($db, $pushup['comment']) . "' ";
+  $sql .= "WHERE id='" . db_escape($db, $pushup['id']) . "' ";
+  $sql .= "LIMIT 1";
+  $result = mysqli_query($db, $sql);
+  // For INSERT statements, $result is true/false
+  if ($result) {
+    return true;
+  } else {
+    // INSERT failed
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit();
+  }
+}
+
 function validate_pushup($pushup) {
 
     $errors = [];
