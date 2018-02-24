@@ -583,7 +583,7 @@ function find_all_pushups() {
 function find_all_pushups_by_user_id($id) {
   global $db;
 
-  $sql = "SELECT pushups.date, users.username, pushups.amount, pushups.comment FROM pushups ";
+  $sql = "SELECT pushups.date, users.username, pushups.amount, pushups.comment, pushups.id FROM pushups ";
   $sql .= "INNER JOIN users ON pushups.user_id = users.id ";
   $sql .= "WHERE user_id='" . db_escape($db, $id) . "' ";
   $sql .= "ORDER BY date DESC";
@@ -665,6 +665,21 @@ function find_pushups_by_date($user, $date) {
         return false;
     }
 }
+
+function find_pushup_by_id($id) {
+  global $db;
+
+  $sql = "SELECT pushups.date, users.username AS username, pushups.amount, pushups.comment, pushups.id, pushups.user_id ";
+  $sql .= "FROM pushups ";
+  $sql .= "INNER JOIN users ON pushups.user_id = users.id ";
+  $sql .= "WHERE pushups.id='" . db_escape($db, $id) . "' ";
+  $sql .= "LIMIT 1";
+  $result = mysqli_query($db, $sql);
+  confirm_result_set($result);
+  $pushup = mysqli_fetch_assoc($result);
+  return $pushup;
+}
+
 
 // users
 

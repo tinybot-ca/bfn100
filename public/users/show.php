@@ -53,7 +53,7 @@
         <tbody>
         <?php while($pushup = mysqli_fetch_assoc($pushups)) { ?>
           <tr>
-            <td><?php echo date('Y-m-d', strtotime(h($pushup['date']))); ?></td>
+            <td><a href="<?php echo url_for('/pushups/show.php?id=' . h(u($pushup['id']))); ?>"><?php echo date('Y-m-d', strtotime(h($pushup['date']))); ?></a></td>
             <td><?php echo h($pushup['amount']); ?></td>
             <td><?php echo h($pushup['comment']); ?></td>
           </tr>
