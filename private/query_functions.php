@@ -706,6 +706,24 @@ function find_pushup_by_id($id) {
   return $pushup;
 }
 
+function delete_pushup($id) {
+  global $db;
+
+  $sql = "DELETE FROM pushups ";
+  $sql .= "WHERE id='" . db_escape($db, $id) . "' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  if ($result) {
+    return true;
+  } else {
+    // DELETE failed
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit();
+  }
+}
+
 
 // users
 

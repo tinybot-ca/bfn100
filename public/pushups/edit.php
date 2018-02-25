@@ -4,7 +4,6 @@
   require_login();
 
   $page_title = 'Edit Push-Up';
-
   $id = $_GET['id'];
 
   if (!isset($_GET['id'])) {
@@ -49,10 +48,6 @@
       <?php echo display_errors($errors); ?>
       <form action="<?php echo url_for('/pushups/edit.php?id=' . h(u($id))); ?>" method="post">
         <div class="form-group">
-          <label for="pushup_id">ID</label>
-          <input type="text" class="form-control" id="pushup_id" name="pushup_id" value="<?php echo h($id); ?>" />
-        </div>
-        <div class="form-group">
           <label for="date">Date</label>
           <input type="date" class="form-control" id="date" name="date" value="<?php echo h($date); ?>" />
         </div>
@@ -75,4 +70,3 @@
 </div><!-- container -->
 
 <?php include(SHARED_PATH . '/public_footer.php'); ?>
-
