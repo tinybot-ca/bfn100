@@ -77,7 +77,7 @@ function send_email_notification($pushup) {
     $user = find_user_by_id($pushup['user_id']);
 
     // Todo: Change to dynamic look-up of email addresses
-    $to = 'mwhang@me.com,amjad.usman@gmail.com';
+    $to = 'mwhang@me.com,amjad.usman@gmail.com,nick.j.chen@gmail.com,asher.chohan@gmail.com';
 
     $subject = 'BFN100: ' .  $user['username'] . ' just pounded out ' . $pushup['amount'] . ' push-ups!';
 

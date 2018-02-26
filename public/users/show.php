@@ -1,6 +1,6 @@
 <?php
     require_once('../../private/initialize.php');
-    //require_login();
+    require_login();
 
     $page_title = 'User Detail';
     $id = $_GET['id'] ?? '1';

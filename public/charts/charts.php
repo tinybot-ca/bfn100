@@ -14,6 +14,10 @@
   $series_bernie['name'] = 'bernie';
   $series_moti = array();
   $series_moti['name'] = 'moti';
+  $series_nikosuave = array();
+  $series_nikosuave['name'] = 'nikosuave';
+  $series_ashman = array();
+  $series_ashman['name'] = 'ashman';
 
   mysqli_data_seek($result, 0);
   while($row = mysqli_fetch_assoc($result)) {
@@ -21,18 +25,28 @@
       $series_bernie['data'][] = (int)$row['total'];
     } elseif($row['username'] == 'moti') {
       $series_moti['data'][] = (int)$row['total'];
+    } elseif($row['username'] == 'nikosuave') {
+      $series_nikosuave['data'][] = (int)$row['total'];
+    } elseif($row['username'] == 'ashman') {
+      $series_ashman['data'][] = (int)$row['total'];
     }
   }
 
   $series=array();
   $series[] = $series_bernie;
   $series[] = $series_moti;
+  $series[] = $series_nikosuave;
+  $series[] = $series_ashman;
 
  // Total Overall
   $series_bernie_pie = array();
   $series_moti_pie = array();
+  $series_nikosuave_pie = array();
+  $series_ashman_pie = array();
   $series_bernie_pie['name'] = 'bernie';
   $series_moti_pie['name'] = 'moti';
+  $series_nikosuave_pie['name'] = 'nikosuave';
+  $series_ashman_pie['name'] = 'ashman';
 
   $result = chart_total_overall();
   while($row = mysqli_fetch_assoc($result)) {
@@ -40,18 +54,28 @@
       $series_bernie_pie['y'] = (int)$row['total'];
     } elseif($row['username'] == 'moti') {
       $series_moti_pie['y'] = (int)$row['total'];
+    } elseif($row['username'] == 'nikosuave') {
+      $series_nikosuave_pie['y'] = (int)$row['total'];
+    } elseif($row['username'] == 'ashman') {
+      $series_ashman_pie['y'] = (int)$row['total'];
     }
   }
   $series_pie = array();
   $series_pie[] = $series_bernie_pie;
   $series_pie[] = $series_moti_pie;
+  $series_pie[] = $series_nikosuave_pie;
+  $series_pie[] = $series_ashman_pie;
 
   // Total by Month
   $categories_for_chart3 = array();
   $series_chart3_bernie = array();
   $series_chart3_moti = array();
+  $series_chart3_nikosuave = array();
+  $series_chart3_ashman = array();
   $series_chart3_bernie['name'] = 'bernie';
   $series_chart3_moti['name'] = 'moti';
+  $series_chart3_nikosuave['name'] = 'nikosuave';
+  $series_chart3_ashman['name'] = 'ashman';
 
   $result = chart_total_by_month();
   while($row = mysqli_fetch_assoc($result)) {
@@ -61,12 +85,22 @@
       $series_chart3_bernie['data'][] = (int)$row['total'];
     } elseif($row['username'] == 'moti') {
       $series_chart3_moti['data'][] = (int)$row['total'];
+    } elseif($row['username'] == 'nikosuave') {
+      $series_chart3_nikosuave['data'][] = (int)$row['total'];
+    } elseif($row['username'] == 'ashman') {
+      $series_chart3_ashman['data'][] = (int)$row['total'];
     }
   }
+
+  // Todo: Need to have better handling for months with null push-up values - for now, I will backfill zero entries for each missing month to make this chart work.
+  // Create a process in MySQL to backfill a "zero" entry for any months that do not have any activity. Hide these zero entries from appearing in User's Activity History (e.g., set WHERE to amount > 0)
+  // Ideally, update query to insert these "zero" entries on the fly instead of having these exist in the database.
 
   $series_chart3 = array();
   $series_chart3[] = $series_chart3_bernie;
   $series_chart3[] = $series_chart3_moti;
+  $series_chart3[] = $series_chart3_nikosuave;
+  $series_chart3[] = $series_chart3_ashman;
 
 ?>
 
